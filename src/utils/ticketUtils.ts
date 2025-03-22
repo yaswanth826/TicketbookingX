@@ -34,6 +34,31 @@ export const getTicketById = (ticketId: string): TicketData | null => {
   }
 };
 
+// Create a new ticket
+export const createTicket = (ticketData: Omit<TicketData, 'id' | 'bookingDate' | 'status' | 'checkedIn'>): TicketData => {
+  try {
+    // Generate a ticket ID using a timestamp and random string
+    const ticketId = `TKT-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+    
+    const newTicket: TicketData = {
+      id: ticketId,
+      ...ticketData,
+      bookingDate: new Date().toISOString(),
+      status: 'CONFIRMED',
+      checkedIn: false
+    };
+    
+    // Save to localStorage
+    const existingTickets = getAllTickets();
+    localStorage.setItem('tickets', JSON.stringify([...existingTickets, newTicket]));
+    
+    return newTicket;
+  } catch (error) {
+    console.error('Error creating ticket:', error);
+    throw new Error('Failed to create ticket');
+  }
+};
+
 // Validate ticket (check if it exists and is not used)
 export const validateTicket = (ticketId: string): { valid: boolean; message: string; ticket: TicketData | null } => {
   const ticket = getTicketById(ticketId);
@@ -72,6 +97,35 @@ export const checkInTicket = (ticketId: string): boolean => {
   } catch (error) {
     console.error('Error checking in ticket:', error);
     return false;
+  }
+};
+
+// Get tickets for an event
+export const getTicketsByEventId = (eventId: string): TicketData[] => {
+  try {
+    const tickets = getAllTickets();
+    return tickets.filter(ticket => ticket.eventId === eventId);
+  } catch (error) {
+    console.error('Error getting tickets by event:', error);
+    return [];
+  }
+};
+
+// Get check-in statistics
+export const getCheckInStats = () => {
+  try {
+    const tickets = getAllTickets();
+    const totalTickets = tickets.length;
+    const checkedIn = tickets.filter(ticket => ticket.checkedIn).length;
+    
+    return {
+      totalTickets,
+      checkedIn,
+      percentageCheckedIn: totalTickets ? Math.round((checkedIn / totalTickets) * 100) : 0
+    };
+  } catch (error) {
+    console.error('Error getting check-in stats:', error);
+    return { totalTickets: 0, checkedIn: 0, percentageCheckedIn: 0 };
   }
 };
 

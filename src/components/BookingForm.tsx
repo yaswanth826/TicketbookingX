@@ -1,8 +1,8 @@
-
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
+import { createTicket } from '@/utils/ticketUtils';
 
 interface BookingFormProps {
   eventId: string;
@@ -32,48 +32,38 @@ const BookingForm = ({ eventId, eventTitle }: BookingFormProps) => {
     
     // Basic validation
     if (!formData.fullName || !formData.email || !formData.phone) {
-      toast("Please fill in all required fields", {
+      toast.error("Please fill in all required fields", {
         description: "All fields are required to complete your booking.",
-        action: {
-          label: "OK",
-          onClick: () => {}
-        },
       });
       return;
     }
     
     setIsSubmitting(true);
     
-    // Simulate API call with timeout
-    setTimeout(() => {
-      // Generate a ticket ID using a timestamp and random string
-      const ticketId = `TKT-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
-      
-      // Here we'd normally store the booking in a database
-      
-      // For now, we'll store in localStorage for demo purposes
+    try {
+      // Use the centralized ticket creation function
       const ticketData = {
-        id: ticketId,
         eventId,
         eventTitle,
-        ...formData,
-        bookingDate: new Date().toISOString(),
-        status: 'CONFIRMED',
-        checkedIn: false
+        ...formData
       };
       
-      const existingTickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-      localStorage.setItem('tickets', JSON.stringify([...existingTickets, ticketData]));
+      const ticket = createTicket(ticketData);
       
-      toast("Booking successful!", {
+      toast.success("Booking successful!", {
         description: "Your ticket has been created. You can view it in My Ticket section.",
       });
       
-      setIsSubmitting(false);
-      
       // Redirect to ticket page
-      navigate(`/ticket?id=${ticketId}`);
-    }, 1500);
+      navigate(`/ticket?id=${ticket.id}`);
+    } catch (error) {
+      console.error('Error creating ticket:', error);
+      toast.error("Booking failed", {
+        description: "There was an error creating your ticket. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
