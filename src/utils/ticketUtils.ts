@@ -147,7 +147,7 @@ export const sampleEvents = [
   {
     id: 'event-2',
     title: 'Design Workshop',
-    date: 'May 22, 2025',
+    date: 'Apr 16, 2025',
     time: '10:00 AM - 3:00 PM',
     location: 'Design Studio, New York',
     image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
@@ -159,7 +159,7 @@ export const sampleEvents = [
   {
     id: 'event-3',
     title: 'Music Festival',
-    date: 'Jun 5, 2025',
+    date: 'Apr 17, 2025',
     time: '4:00 PM - 11:00 PM',
     location: 'Central Park, New York',
     image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
