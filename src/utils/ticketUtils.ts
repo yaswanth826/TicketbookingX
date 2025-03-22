@@ -8,6 +8,7 @@ interface TicketData {
   phone: string;
   quantity: number;
   bookingDate: string;
+  eventDate?: string;  // Added for selected date and time
   status: string;
   checkedIn: boolean;
   checkInTime?: string;
