@@ -134,8 +134,8 @@ export const getCheckInStats = () => {
 export const sampleEvents = [
   {
     id: 'event-1',
-    title: 'Tech Conference 2023',
-    date: 'Oct 15, 2023',
+    title: 'Tech Conference 2025',
+    date: 'Apr 15, 2025',
     time: '9:00 AM - 5:00 PM',
     location: 'San Francisco Convention Center',
     image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
@@ -147,7 +147,7 @@ export const sampleEvents = [
   {
     id: 'event-2',
     title: 'Design Workshop',
-    date: 'Oct 22, 2023',
+    date: 'May 22, 2025',
     time: '10:00 AM - 3:00 PM',
     location: 'Design Studio, New York',
     image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
@@ -159,7 +159,7 @@ export const sampleEvents = [
   {
     id: 'event-3',
     title: 'Music Festival',
-    date: 'Nov 5, 2023',
+    date: 'Jun 5, 2025',
     time: '4:00 PM - 11:00 PM',
     location: 'Central Park, New York',
     image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
