@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import TicketQRCode from '@/components/QRCode';
 import { getTicketById } from '@/utils/ticketUtils';
 import { ArrowLeft, Calendar, Clock, MapPin, Ticket, UserCheck, AlertCircle } from 'lucide-react';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 const MyTicket = () => {

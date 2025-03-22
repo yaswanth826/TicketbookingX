@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import Scanner from '@/components/Scanner';
 import { validateTicket, checkInTicket } from '@/utils/ticketUtils';
 import { ScanLine, Check, X, UserCheck, AlertCircle } from 'lucide-react';
-import { toast } from '@/components/ui/sonner';
+import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
 
 interface ScanResultData {
